@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>在Docker Desktop安装Hadoop(借用镜像) | fpgboy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="学习,编程" />
+  
+  <meta name="description" content="在Docker Desktop安装Hadoop(借用镜像)前提条件windows系统为专业版 Linux子系统为wsl2  Docker20.10.8 安装步骤首先将此项目克隆到本地（克隆地址没有要求只要自己可以找到即可），项目地址如下 https:&#x2F;&#x2F;github.com&#x2F;kiwenlau&#x2F;hadoop-cluster-docker 拉取镜像（若拉取时的速度过慢可进行换源） 1docker pu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Docker Desktop安装Hadoop(借用镜像)">
+<meta property="og:url" content="https://fpgboy.github.io/2021/11/03/%E5%9C%A8Docker%20Desktop%E5%AE%89%E8%A3%85Hadoop(%E5%80%9F%E7%94%A8%E9%95%9C%E5%83%8F)/index.html">
+<meta property="og:site_name" content="fpgboy">
+<meta property="og:description" content="在Docker Desktop安装Hadoop(借用镜像)前提条件windows系统为专业版 Linux子系统为wsl2  Docker20.10.8 安装步骤首先将此项目克隆到本地（克隆地址没有要求只要自己可以找到即可），项目地址如下 https:&#x2F;&#x2F;github.com&#x2F;kiwenlau&#x2F;hadoop-cluster-docker 拉取镜像（若拉取时的速度过慢可进行换源） 1docker pu">
+<meta property="og:locale">
+<meta property="og:image" content="c:/Users/30277/AppData/Roaming/Typora/typora-user-images/image-20211001112205617.png">
+<meta property="og:image" content="c:/Users/30277/AppData/Roaming/Typora/typora-user-images/image-20211001112757270.png">
+<meta property="og:image" content="c:/Users/30277/AppData/Roaming/Typora/typora-user-images/image-20211001112911896.png">
+<meta property="og:image" content="c:/Users/30277/AppData/Roaming/Typora/typora-user-images/image-20211001113224344.png">
+<meta property="article:published_time" content="2021-11-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-11-03T06:18:33.491Z">
+<meta property="article:author" content="fpgboy">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Hadoop">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/30277/AppData/Roaming/Typora/typora-user-images/image-20211001112205617.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">fpgboy的博客</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>标签</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        fpgboy的博客
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个在慢慢学习的编程小萌新
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="主页" target="_blank" href="/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/fpgboy">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="QQ"  href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=3027757641">
+                            <i class="fa fa-qq fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-在Docker Desktop安装Hadoop(借用镜像)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      在Docker Desktop安装Hadoop(借用镜像)
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hadoop/">Hadoop</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-11-03
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="在Docker-Desktop安装Hadoop-借用镜像"><a href="#在Docker-Desktop安装Hadoop-借用镜像" class="headerlink" title="在Docker Desktop安装Hadoop(借用镜像)"></a>在Docker Desktop安装Hadoop(借用镜像)</h1><h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><p>windows系统为专业版 Linux子系统为wsl2  Docker20.10.8</p>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><p>首先将此项目克隆到本地（克隆地址没有要求只要自己可以找到即可），项目地址如下</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/kiwenlau/hadoop-cluster-docker">https://github.com/kiwenlau/hadoop-cluster-docker</a></p>
+<p>拉取镜像（若拉取时的速度过慢可进行换源）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull kiwenlau/hadoop:1.0</span><br></pre></td></tr></table></figure>
+
+
+
+<p>搭建网桥</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create --driver=bridge hadoop</span><br></pre></td></tr></table></figure>
+
+
+
+<p>修改所克隆项目文件夹中的start-container.sh文件，添加两个从机的端口映射，注意在windows中要将所有语句前的的sudo去掉</p>
+<p><img src="C:\Users\30277\AppData\Roaming\Typora\typora-user-images\image-20211001112205617.png" alt="image-20211001112205617"></p>
+<p>在git bash中进入我们所克隆的hadoop-cluster-docker文件夹路径下，运行此指令执行脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start-container.sh</span><br></pre></td></tr></table></figure>
+
+<p>执行成功后，我们及进入了hadoop的master机中</p>
+<p><img src="C:\Users\30277\AppData\Roaming\Typora\typora-user-images\image-20211001112757270.png" alt="image-20211001112757270"></p>
+<p>进行ls操作我们即可查看当前文件列表如下</p>
+<p><img src="C:\Users\30277\AppData\Roaming\Typora\typora-user-images\image-20211001112911896.png" alt="image-20211001112911896"></p>
+<p>运行start-hadoop.sh</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start-hadoop.sh</span><br></pre></td></tr></table></figure>
+
+<p>随后在浏览器访问本地相应端口即可</p>
+<p><img src="C:\Users\30277\AppData\Roaming\Typora\typora-user-images\image-20211001113224344.png" alt="image-20211001113224344"></p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年11月03日 14:18</p>
+        <p>原始链接： <a class="post-url" href="/2021/11/03/%E5%9C%A8Docker%20Desktop%E5%AE%89%E8%A3%85Hadoop(%E5%80%9F%E7%94%A8%E9%95%9C%E5%83%8F)/" title="在Docker Desktop安装Hadoop(借用镜像)">https://fpgboy.github.io/2021/11/03/%E5%9C%A8Docker%20Desktop%E5%AE%89%E8%A3%85Hadoop(%E5%80%9F%E7%94%A8%E9%95%9C%E5%83%8F)/</a></p>
+        <footer>
+            <a href="https://fpgboy.github.io">
+                <img src="/images/logo.png" alt="fpgboy">
+                fpgboy
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fpgboy.github.io/2021/11/03/%E5%9C%A8Docker%20Desktop%E5%AE%89%E8%A3%85Hadoop(%E5%80%9F%E7%94%A8%E9%95%9C%E5%83%8F)/&title=《在Docker Desktop安装Hadoop(借用镜像)》 — fpgboy&pic=/images/Docker装Hadoop.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fpgboy.github.io/2021/11/03/%E5%9C%A8Docker%20Desktop%E5%AE%89%E8%A3%85Hadoop(%E5%80%9F%E7%94%A8%E9%95%9C%E5%83%8F)/&title=《在Docker Desktop安装Hadoop(借用镜像)》 — fpgboy&source=一个技术小白，若有错误望大佬指出" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fpgboy.github.io/2021/11/03/%E5%9C%A8Docker%20Desktop%E5%AE%89%E8%A3%85Hadoop(%E5%80%9F%E7%94%A8%E9%95%9C%E5%83%8F)/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《在Docker Desktop安装Hadoop(借用镜像)》 — fpgboy&url=https://fpgboy.github.io/2021/11/03/%E5%9C%A8Docker%20Desktop%E5%AE%89%E8%A3%85Hadoop(%E5%80%9F%E7%94%A8%E9%95%9C%E5%83%8F)/&via=https://fpgboy.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fpgboy.github.io/2021/11/03/%E5%9C%A8Docker%20Desktop%E5%AE%89%E8%A3%85Hadoop(%E5%80%9F%E7%94%A8%E9%95%9C%E5%83%8F)/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://fpgboy.github.io/2021/11/03/%E5%9C%A8Docker%20Desktop%E5%AE%89%E8%A3%85Hadoop(%E5%80%9F%E7%94%A8%E9%95%9C%E5%83%8F)/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/学习/" class="color3">学习</a>
+      
+    <a href="/tags/Docker/" class="color2">Docker</a>
+      
+    <a href="/tags/Hadoop/" class="color2">Hadoop</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%9C%A8Docker-Desktop%E5%AE%89%E8%A3%85Hadoop-%E5%80%9F%E7%94%A8%E9%95%9C%E5%83%8F"><span class="post-toc-text">在Docker Desktop安装Hadoop(借用镜像)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6"><span class="post-toc-text">前提条件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="post-toc-text">安装步骤</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2021/11/03/Docker%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Docker学习</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="在Docker Desktop安装Hadoop(借用镜像)" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cyvJTJcli';
+        var conf = '358a4104590e52bbfc802f44cfdc1f10';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2021 fpgboy<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://fpgboy.github.io",
+      animate: true,
+      isHome: false,
+      share: true
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Docker/">Docker</a><a class="category-link" href="/categories/Hadoop/">Hadoop</a><a class="category-link" href="/categories/Ubuntu/">Ubuntu</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>标签</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+  </div>
+</body>
+</html>
