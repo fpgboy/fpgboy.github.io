@@ -3,22 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>关于我 | fpgboy</title>
+  <title>在WSL中安装伪分布式Hadoop | fpgboy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="学习,编程" />
   
-  <meta name="description" content="关于我一位在校读书的普通一本大学生。 关于学习身为一个计算机科学与技术专业的学生，什么都会学，主要看兴趣。 关于座右铭 学习&amp;&amp;共享  关于爱好喜欢看动漫，二次元什么的赛高. 联系我 博客: fpgboy.github.io Email: &amp;#51;&amp;#48;&amp;#x32;&amp;#x37;&amp;#55;&amp;#x35;&amp;#x37;&amp;#x36;&amp;#x34;&amp;#x31;&amp;#x40;&amp;#x71;&amp;#1">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于我">
-<meta property="og:url" content="https://fpgboy.github.io/about/index.html">
+  <meta name="description" content="WSL中安装伪分布式Hadoop配置环境Windows10中的Linux子系统（wsl2）,hadoop-3.3.1 参考文献地址:OpenEuler-Hadoop安装配置 | Angels-D 这个是真大佬，注意在下载的时候不要下错了东西，他是在华为的OpenEuler上进行的Hadoop配置。 配置JAVA环境变量可以根据此命令和TAB键的补齐功能来查看当前apt下载库里面已有的openjdk">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在WSL中安装伪分布式Hadoop">
+<meta property="og:url" content="https://fpgboy.github.io/2021/01/13/WSL%E4%B8%AD%E5%AE%89%E8%A3%85%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8FHadoop/index.html">
 <meta property="og:site_name" content="fpgboy">
-<meta property="og:description" content="关于我一位在校读书的普通一本大学生。 关于学习身为一个计算机科学与技术专业的学生，什么都会学，主要看兴趣。 关于座右铭 学习&amp;&amp;共享  关于爱好喜欢看动漫，二次元什么的赛高. 联系我 博客: fpgboy.github.io Email: &amp;#51;&amp;#48;&amp;#x32;&amp;#x37;&amp;#55;&amp;#x35;&amp;#x37;&amp;#x36;&amp;#x34;&amp;#x31;&amp;#x40;&amp;#x71;&amp;#1">
+<meta property="og:description" content="WSL中安装伪分布式Hadoop配置环境Windows10中的Linux子系统（wsl2）,hadoop-3.3.1 参考文献地址:OpenEuler-Hadoop安装配置 | Angels-D 这个是真大佬，注意在下载的时候不要下错了东西，他是在华为的OpenEuler上进行的Hadoop配置。 配置JAVA环境变量可以根据此命令和TAB键的补齐功能来查看当前apt下载库里面已有的openjdk">
 <meta property="og:locale">
-<meta property="article:published_time" content="2021-11-03T09:48:48.000Z">
-<meta property="article:modified_time" content="2022-01-12T02:29:23.811Z">
+<meta property="og:image" content="c:/Users/30277/AppData/Roaming/Typora/typora-user-images/image-20211113212134252.png">
+<meta property="article:published_time" content="2021-01-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-13T04:03:56.689Z">
 <meta property="article:author" content="fpgboy">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Hadoop">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/30277/AppData/Roaming/Typora/typora-user-images/image-20211113212134252.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -137,20 +142,27 @@ ga('send', 'pageview');
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-WSL中安装伪分布式Hadoop" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      关于我
+      在WSL中安装伪分布式Hadoop
     </h1>
     <div class="post-title-bar">
       <ul>
           
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hadoop/">Hadoop</a>
+                  
+              </li>
+          
         <li>
-          <i class="fa fa-calendar"></i>  2021-11-03
+          <i class="fa fa-calendar"></i>  2021-01-13
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -163,25 +175,46 @@ ga('send', 'pageview');
           
       </header>
     
-    <div class="article-entry " itemprop="articleBody">
+    <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h3 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h3><p>一位在校读书的普通一本大学生。</p>
-<h3 id="关于学习"><a href="#关于学习" class="headerlink" title="关于学习"></a>关于学习</h3><p>身为一个计算机科学与技术专业的学生，什么都会学，主要看兴趣。</p>
-<h3 id="关于座右铭"><a href="#关于座右铭" class="headerlink" title="关于座右铭"></a>关于座右铭</h3><blockquote>
-<p>学习&amp;&amp;共享</p>
-</blockquote>
-<h3 id="关于爱好"><a href="#关于爱好" class="headerlink" title="关于爱好"></a>关于爱好</h3><p>喜欢看动漫，二次元什么的赛高.</p>
-<h3 id="联系我"><a href="#联系我" class="headerlink" title="联系我"></a>联系我</h3><ul>
-<li>博客: <a href="fpgboy.github.io">fpgboy.github.io</a></li>
-<li>Email: <a href="mailto:&#51;&#48;&#x32;&#x37;&#55;&#x35;&#x37;&#x36;&#x34;&#x31;&#x40;&#x71;&#113;&#x2e;&#x63;&#x6f;&#109;">&#51;&#48;&#x32;&#x37;&#55;&#x35;&#x37;&#x36;&#x34;&#x31;&#x40;&#x71;&#113;&#x2e;&#x63;&#x6f;&#109;</a></li>
-<li>GitHub: <a target="_blank" rel="noopener" href="https://github.com/fpgboy">fpgboy</a></li>
-</ul>
+            <h1 id="WSL中安装伪分布式Hadoop"><a href="#WSL中安装伪分布式Hadoop" class="headerlink" title="WSL中安装伪分布式Hadoop"></a>WSL中安装伪分布式Hadoop</h1><h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><p>Windows10中的Linux子系统（wsl2）,hadoop-3.3.1</p>
+<p>参考文献地址:<a target="_blank" rel="noopener" href="https://angels-d.github.io/2021/09/24/openeuler-hadoop-an-zhuang-pei-zhi/">OpenEuler-Hadoop安装配置 | Angels-D</a></p>
+<p>这个是真大佬，注意在下载的时候不要下错了东西，他是在华为的OpenEuler上进行的Hadoop配置。</p>
+<h2 id="配置JAVA环境变量"><a href="#配置JAVA环境变量" class="headerlink" title="配置JAVA环境变量"></a>配置JAVA环境变量</h2><p>可以根据此命令和TAB键的补齐功能来查看当前apt下载库里面已有的openjdk版本,此处我安装的是openjdk-11-jdk（在Linux中我们一般使用openjdk,想要知道openjdk和jdk区别的同志可以去自己搜索一下）。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install openjdk-</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\30277\AppData\Roaming\Typora\typora-user-images\image-20211113212134252.png" alt="image-20211113212134252"></p>
+<p>jdk的默认安装位置在/usr/lib/jvm/路径中</p>
+<p>接着需要配置一下 JAVA_HOME 环境变量，为方便，我们在 ~/.bashrc 中进行设置（想要了解各种添加变量的方法可以阅读扩展阅读中的博客，特别要注意的的是每个用户的 JAVA_HOME 环境变量并不相通 扩展阅读：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43866709/article/details/88014346">设置Linux环境变量的方法和区别</a>）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>在文件最后面添加如下单独一行（指向 JDK 的安装位置），并保存：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64</span><br></pre></td></tr></table></figure>
+
+<p>接着还需要让该环境变量生效，执行如下代码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc    # 使变量设置生效</span><br></pre></td></tr></table></figure>
+
+<p>使用如下命令来测试设置是否正确，两者输出的</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br><span class="line"><span class="meta">$</span><span class="bash">JAVA_HOME/bin/java -version</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Hadoop的安装和配置"><a href="#Hadoop的安装和配置" class="headerlink" title="Hadoop的安装和配置"></a>Hadoop的安装和配置</h2><p>基本步骤可以参考:<a target="_blank" rel="noopener" href="https://angels-d.github.io/2021/09/24/openeuler-hadoop-an-zhuang-pei-zhi/">OpenEuler-Hadoop安装配置 | Angels-D</a></p>
+<p>1.我们只在这里讲述有修改的步骤:</p>
+<p>对<strong>core-site.xml，hdfs-site.xml，yarn-site.xml，mapred-site.xml</strong>修改时，我们把node1和node2都改为localhost即可。</p>
+<p>2.由于为伪分布式节点，我们可以略过添加节点主机和添加Host映射步骤。</p>
+<p>3.注意wsl中并无ssh组件，遇到问题时具体问题具体解决即可（由于出现的问题均不一样，在此便不再描述）。</p>
+<h2 id="附加"><a href="#附加" class="headerlink" title="附加"></a>附加</h2><p>在进行完初始化操作后，我们可以在我们添加的环境变量路径下书写start-hadoop.sh和stop-hadoop.sh脚本文件，方便我们进行Hadoop的打开和关闭操作(此处只给出start-hadoop.sh中文件的内容，stop-hadoop.sh文件只需要将start文件中的start全部修改为stop即可)。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/opt/hadoop/sbin/start-dfs.sh</span><br><span class="line">/opt/hadoop/sbin/start-yarn.sh</span><br><span class="line">/opt/hadoop/bin/mapred --daemon start historyserver</span><br></pre></td></tr></table></figure>
+
+<p>在保存了文件后需要用该命令来赋予两个脚本文件相应的权限</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 start-hadoop.sh</span><br></pre></td></tr></table></figure>
+
+<p>当然我们还可以在它本身便存在的start-all.sh文件进行一些修改。</p>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2022年01月12日 10:29</p>
-        <p>原始链接： <a class="post-url" href="/about/index.html" title="关于我">https://fpgboy.github.io/about/index.html</a></p>
+        <p>最后更新： 2022年01月13日 12:03</p>
+        <p>原始链接： <a class="post-url" href="/2021/01/13/WSL%E4%B8%AD%E5%AE%89%E8%A3%85%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8FHadoop/" title="在WSL中安装伪分布式Hadoop">https://fpgboy.github.io/2021/01/13/WSL%E4%B8%AD%E5%AE%89%E8%A3%85%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8FHadoop/</a></p>
         <footer>
             <a href="https://fpgboy.github.io">
                 <img src="/images/logo.png" alt="fpgboy">
@@ -203,7 +236,7 @@ ga('send', 'pageview');
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fpgboy.github.io/about/&title=《关于我》 — fpgboy&pic=https://fpgboy.github.ioimages/logo.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://fpgboy.github.io/2021/01/13/WSL%E4%B8%AD%E5%AE%89%E8%A3%85%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8FHadoop/&title=《在WSL中安装伪分布式Hadoop》 — fpgboy&pic=/images/wsl安装Hadoop.png" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -213,22 +246,22 @@ ga('send', 'pageview');
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fpgboy.github.io/about/&title=《关于我》 — fpgboy&source=一个技术小白，若有错误望大佬指出" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://fpgboy.github.io/2021/01/13/WSL%E4%B8%AD%E5%AE%89%E8%A3%85%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8FHadoop/&title=《在WSL中安装伪分布式Hadoop》 — fpgboy&source=一个技术小白，若有错误望大佬指出" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fpgboy.github.io/about/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://fpgboy.github.io/2021/01/13/WSL%E4%B8%AD%E5%AE%89%E8%A3%85%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8FHadoop/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《关于我》 — fpgboy&url=https://fpgboy.github.io/about/&via=https://fpgboy.github.io" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《在WSL中安装伪分布式Hadoop》 — fpgboy&url=https://fpgboy.github.io/2021/01/13/WSL%E4%B8%AD%E5%AE%89%E8%A3%85%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8FHadoop/&via=https://fpgboy.github.io" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fpgboy.github.io/about/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://fpgboy.github.io/2021/01/13/WSL%E4%B8%AD%E5%AE%89%E8%A3%85%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8FHadoop/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -238,7 +271,7 @@ ga('send', 'pageview');
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://fpgboy.github.io/about/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://fpgboy.github.io/2021/01/13/WSL%E4%B8%AD%E5%AE%89%E8%A3%85%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8FHadoop/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -247,6 +280,17 @@ ga('send', 'pageview');
         <ul class="article-footer-menu">
             
             
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/学习/" class="color3">学习</a>
+      
+    <a href="/tags/Docker/" class="color2">Docker</a>
+      
+    <a href="/tags/Hadoop/" class="color2">Hadoop</a>
+      
+  </li>
+
         </ul>
         
     </footer>
@@ -256,15 +300,30 @@ ga('send', 'pageview');
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%85%B3%E4%BA%8E%E6%88%91"><span class="post-toc-text">关于我</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0"><span class="post-toc-text">关于学习</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%85%B3%E4%BA%8E%E5%BA%A7%E5%8F%B3%E9%93%AD"><span class="post-toc-text">关于座右铭</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%85%B3%E4%BA%8E%E7%88%B1%E5%A5%BD"><span class="post-toc-text">关于爱好</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E8%81%94%E7%B3%BB%E6%88%91"><span class="post-toc-text">联系我</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#WSL%E4%B8%AD%E5%AE%89%E8%A3%85%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8FHadoop"><span class="post-toc-text">WSL中安装伪分布式Hadoop</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83"><span class="post-toc-text">配置环境</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%85%8D%E7%BD%AEJAVA%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="post-toc-text">配置JAVA环境变量</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Hadoop%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE"><span class="post-toc-text">Hadoop的安装和配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%99%84%E5%8A%A0"><span class="post-toc-text">附加</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
 
+<nav id="article-nav">
+  
+    <a href="/2021/11/03/Ubuntu%E8%AE%BE%E7%BD%AE%E6%95%99%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          Ubuntu设置
+        
+      </span>
+    </a>
+  
+  
+</nav>
+
 
 
     
-        <div id="SOHUCS" sid="" ></div>
+        <div id="SOHUCS" sid="WSL中安装伪分布式Hadoop" ></div>
 <script type="text/javascript">
     (function(){
         var appid = 'cyvJTJcli';
